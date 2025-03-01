@@ -22,10 +22,72 @@
 
 </head>
 <style>
-body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;padding: 45px;font-size: 16px;font-family: sans-serif;line-height: 1.25;}
-#header{display:flex;padding-bottom:8px;border-bottom: 1px solid var(--borderColor-muted, var(--color-border-muted));margin-bottom: 16px;}
-#footer {margin-top:64px; text-align: center;font-size: small;}
+body {
+  margin: 0;          /* 移除自动居中边距 */
+  /* max-width: 900px; 注释或删除此行 */
+  padding: 0;         /* 原有padding由背景容器控制 */
+}
+/* 暗色主题样式 */
+[data-color-mode="dark"] .background-container {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                    url('image/background.webp');
+}
 
+[data-color-mode="dark"] .content-wrapper {
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #e6edf3;
+}
+
+[data-color-mode="dark"] .SideNav .Label,
+[data-color-mode="dark"] .SideNav .LabelTime,
+[data-color-mode="dark"] .SideNav .LabelName {
+  color: #fff;
+}
+
+/* 新增背景容器样式 */
+.background-container {
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                    url('image/background.webp'); 
+  background-size: cover;                           
+  background-position: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* 新增内容居中容器 */
+.content-wrapper {
+  max-width: 900px;   /* 保持原有内容宽度限制 */
+  margin: 0 auto;     /* 居中显示 */
+  background-color: rgba(255,255,255,0.9); /* 半透明背景提升可读性 */
+  border-radius: 8px; /* 可选：圆角效果 */
+  padding: 20px;      /* 内容区域内边距 */
+  position: relative; /* 提升层级 */
+  z-index: 1;         /* 确保内容显示在背景之上 */
+}
+.avatar {transition: 0.8s;width:64px;height:64px;object-fit: cover;}
+.avatar:hover{transform: scale(1.15) rotate(360deg);}
+#header h1 a{color:inherit;text-decoration:none;vertical-align: bottom;font-size:40px;font-family:Monaco;margin-left:8px;}
+.title-right{display:flex;margin:auto 0 0 auto;}
+.title-right button{margin-right:8px;padding:16px;}
+.title-right .circle{padding: 14px 16px;}
+
+.SideNav{min-width: 360px;}
+.SideNav-icon{margin-right: 16px}
+.SideNav-item .Label{color: #fff;margin-left:4px;}
+.d-flex{min-width:0;}
+.listTitle{overflow:hidden;white-space:nowrap;text-overflow: ellipsis;max-width: 100%;}
+.listLabels{white-space:nowrap;display:flex;}
+.listLabels object{max-height:16px;max-width:24px;}
+
+@media (max-width: 600px) {
+  [data-color-mode="dark"] .content-wrapper {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+}
+  /* 暗色主题移动端适配 */
+  [data-color-mode="dark"] .content-wrapper {
+    background-color: rgba(0, 0, 0, 0.85); /* 更深的背景 */
+  }
 </style>
 
 <style>
@@ -48,7 +110,9 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 
 <body>
-    <div id="header">
+  <div class="background-container">
+    <div class="content-wrapper">
+      <div id="header">
 <h1 class="postTitle">及加冠记</h1>
 <div class="title-right">
     <a href="https://StarLinkSora.github.io" id="buttonHome" class="btn btn-invisible circle" title="首页">
@@ -72,7 +136,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 
 </div>
 </div>
-    <div id="content">
+      <div id="content">
 <div class="markdown-body" id="postBody"><p>余幼时不记，亲曰余自幼聪慧，虽好动，但诲于心，高堂悦，曰懂人理。<br>
 十又二，读于中学，好思而问，得识恩师周先生。先生慈怀，余有问，先生必有答，引以教余学习之道，得以悟。余不善表情，先生之诲，念之在心，永德之。至高中，不解之惑多矣。当是有友荐余读毛学马。谢过，余则入书而阅理，出书而思理，以事而悟理，惑之得解。知理者，则用其中。故高中虽繁，余觉轻松欢欣。既已加冠，学于太学，当回头，省人事，遂作此文。<br>
 余遇事当思何为、为何、如何，是为三思。其中又当以何为为重，即为定义。人之异，定义有异，易误，则不得共识。<br>
@@ -87,7 +151,7 @@ body{box-sizing: border-box;min-width: 200px;max-width: 900px;margin: 20px auto;
 <div class="comments" id="comments"></div>
 
 </div>
-    <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://StarLinkSora.github.io">星璃的小空间</a></div>
+      <div id="footer"><div id="footer1">Copyright © <span id="copyrightYear"></span> <a href="https://StarLinkSora.github.io">星璃的小空间</a></div>
 <div id="footer2">
     <span id="runday"></span><span>Powered by <a href="https://meekdai.com/Gmeek.html" target="_blank">Gmeek</a></span>
 </div>
@@ -103,6 +167,8 @@ if("11/28/2024"!=""){
     document.getElementById("runday").innerHTML="网站运行"+diffDay+"天"+" • ";
 }
 </script></div>
+    </div>
+  </div>
 </body>
 <script>
 var IconList={'sun': 'M8 10.5a2.5 2.5 0 100-5 2.5 2.5 0 000 5zM8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zM2.343 2.343a.75.75 0 011.061 0l1.06 1.061a.75.75 0 01-1.06 1.06l-1.06-1.06a.75.75 0 010-1.06zm9.193 9.193a.75.75 0 011.06 0l1.061 1.06a.75.75 0 01-1.06 1.061l-1.061-1.06a.75.75 0 010-1.061zM16 8a.75.75 0 01-.75.75h-1.5a.75.75 0 010-1.5h1.5A.75.75 0 0116 8zM3 8a.75.75 0 01-.75.75H.75a.75.75 0 010-1.5h1.5A.75.75 0 013 8zm10.657-5.657a.75.75 0 010 1.061l-1.061 1.06a.75.75 0 11-1.06-1.06l1.06-1.06a.75.75 0 011.06 0zm-9.193 9.193a.75.75 0 010 1.06l-1.06 1.061a.75.75 0 11-1.061-1.06l1.06-1.061a.75.75 0 011.061 0z', 'moon': 'M9.598 1.591a.75.75 0 01.785-.175 7 7 0 11-8.967 8.967.75.75 0 01.961-.96 5.5 5.5 0 007.046-7.046.75.75 0 01.175-.786zm1.616 1.945a7 7 0 01-7.678 7.678 5.5 5.5 0 107.678-7.678z', 'sync': 'M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z', 'home': 'M6.906.664a1.749 1.749 0 0 1 2.187 0l5.25 4.2c.415.332.657.835.657 1.367v7.019A1.75 1.75 0 0 1 13.25 15h-3.5a.75.75 0 0 1-.75-.75V9H7v5.25a.75.75 0 0 1-.75.75h-3.5A1.75 1.75 0 0 1 1 13.25V6.23c0-.531.242-1.034.657-1.366l5.25-4.2Zm1.25 1.171a.25.25 0 0 0-.312 0l-5.25 4.2a.25.25 0 0 0-.094.196v7.019c0 .138.112.25.25.25H5.5V8.25a.75.75 0 0 1 .75-.75h3.5a.75.75 0 0 1 .75.75v5.25h2.75a.25.25 0 0 0 .25-.25V6.23a.25.25 0 0 0-.094-.195Z', 'github': 'M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z'};
@@ -133,7 +199,7 @@ function utterancesTheme(theme){
     iframe.contentWindow.postMessage(message,'https://utteranc.es');
 }
 if(themeSettings[theme]){changeTheme(...themeSettings[theme]);}
-console.log("\n %c Gmeek last https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
+console.log("\n %c Gmeek main https://github.com/Meekdai/Gmeek \n","padding:5px 0;background:#02d81d;color:#fff");
 </script>
 
 <script>
@@ -145,6 +211,7 @@ document.getElementById("pathIssue").setAttribute("d",IconList["github"]);
 function openComments(){
     cm=document.getElementById("comments");
     cmButton=document.getElementById("cmButton");
+    cmButton.disabled=true;
     cmButton.innerHTML="loading";
     span=document.createElement("span");
     span.setAttribute("class","AnimatedEllipsis");
