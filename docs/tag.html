@@ -81,6 +81,77 @@ body {
   [data-color-mode="dark"] .content-wrapper {
     background-color: rgba(0, 0, 0, 0.85); /* 更深的背景 */
   }
+  @media (max-width: 600px) {
+  /* 基础调整 */
+  body {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 8px;
+  }
+
+  /* 头部导航栏 */
+  #header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+  }
+  .title-right {
+    margin-top: 12px;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .title-right .btn {
+    padding: 12px;
+    margin-right: 4px;
+  }
+
+  /* 文章列表 */
+  .SideNav {
+    min-width: 100%;
+  }
+  .SideNav-item {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+  }
+  .listLabels {
+    margin-top: 8px;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .Label {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  /* 页脚 */
+  #footer {
+    margin-top: 32px;
+    padding: 12px;
+    font-size: 12px;
+  }
+  #footer2 {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  /* 内容容器 */
+  .content-wrapper {
+    padding: 12px;
+    border-radius: 0;
+    background-color: rgba(255,255,255,0.95);
+  }
+
+  /* 禁用移动端动画 */
+  .avatar:hover {
+    transform: none;
+  }
+
+  /* 点击反馈 */
+  .btn:active {
+    background-color: rgba(0,0,0,0.1);
+  }
+}
 </style>
 
 <style>
